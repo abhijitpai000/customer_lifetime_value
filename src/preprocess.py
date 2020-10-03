@@ -38,6 +38,9 @@ def _create_transactions(customers_raw, orders_raw, payments_raw):
                                       how="inner",
                                       on="customer_id")
 
+    # Dropping CustomerID.
+    transactions.drop("customer_id", axis=1, inplace=True)
+
     # Adding Payment Value.
     payment_value = payments_raw.groupby("order_id")[["payment_value"]].sum()
     transactions = transactions.merge(payment_value, how="left", on="order_id")
@@ -67,6 +70,7 @@ def _create_transactions(customers_raw, orders_raw, payments_raw):
 
     # Saving file.
     file_path = Path.cwd() / "datasets/transactions.csv"
+
     transactions.to_csv(file_path, index=False)
 
     return transactions
@@ -128,10 +132,11 @@ def _summary_calibration_and_holdout(transactions):
     summary_cal_holdout = calibration_and_holdout_data(transactions=transactions,
                                                        customer_id_col="customer_unique_id",
                                                        datetime_col="order_purchase_timestamp",
-                                                       calibration_period_end="2018-05-31",
+                                                       calibration_period_end="2017-12-31",
                                                        observation_period_end="2018-08-31",
                                                        freq="D",
                                                        freq_multiplier=1)
+
     # Saving file.
     file_path = Path.cwd() / "datasets/summary_cal_holdout.csv"
     summary_cal_holdout.to_csv(file_path, index=False)
@@ -144,17 +149,24 @@ def _summary(transactions):
 
     Yields
     ------
-        summary.csv
+        summary.csv - RFM data.
+        customer_mapping.csv - Summary Index - Customer ID from Transactions mapping.
     """
     summary = summary_data_from_transaction_data(transactions=transactions,
                                                  customer_id_col="customer_unique_id",
                                                  datetime_col="order_purchase_timestamp",
                                                  observation_period_end="2018-08-31",
                                                  freq="D")
+    # Customer ID - Summary Index mapping.
+    customer_mapping = transactions.groupby("customer_unique_id", as_index=False).count()[["customer_unique_id"]]
+    file_path = Path.cwd() / "datasets/customer_mapping.csv"
+    customer_mapping.to_csv(file_path, index=False)
+
     # Saving file.
     file_path = Path.cwd() / "datasets/summary.csv"
     summary.to_csv(file_path, index=False)
     return
+
 
 def make_dataset():
     """

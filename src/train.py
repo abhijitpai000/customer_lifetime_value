@@ -5,7 +5,7 @@ import pandas as pd
 from pathlib import Path
 
 
-def calibration_model():
+def _calibration_model():
     """
     Trains BG/NBD Calibration Model.
 
@@ -20,7 +20,7 @@ def calibration_model():
     cal_bg_nbd.fit(frequency=summary_cal_holdout["frequency_cal"],
                    recency=summary_cal_holdout["recency_cal"],
                    T=summary_cal_holdout["T_cal"],
-                   verbose=False)
+                   verbose=True)
 
     # Saving Model.
     file_path = Path.cwd() / "models/calibration_model.pkl"
@@ -28,7 +28,7 @@ def calibration_model():
     return
 
 
-def clv_model():
+def _clv_model():
     """
     Trains BG/NBD Model on entire RFM data, final fit.
 
@@ -43,9 +43,26 @@ def clv_model():
     clv.fit(frequency=summary["frequency"],
             recency=summary["recency"],
             T=summary["T"],
-            verbose=False)
+            verbose=True)
 
     # Saving Model.
     file_path = Path.cwd() / "models/customer_lifetime_estimator.pkl"
     clv.save_model(path=file_path)
+    return
+
+
+def train_model():
+    """
+    Trains BG/NBD Models, one model on Calibration-Holdout dataset and Another on the whole dataset, final fit.
+
+    Yields
+    ------
+        calibration_model.pkl - Model Evaluation.
+        customer_lifetime_estimator.pkl - Model Predictions.
+    """
+    # Train BG/NBD on Calibration-Holdout data.
+    _calibration_model()
+
+    # Train BG/NBD data on entire dataset.
+    _clv_model()
     return

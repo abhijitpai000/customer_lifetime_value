@@ -9,13 +9,13 @@ Trained a Beta Geometric-Negative Binomial Distribution (BG/NBD) model that expl
 
 Trained Model Predicts Number of Purchases with a RMSE of 0.144 and is able to capture 99% of customer historical transactions with frequency less than or equal to 4, Less than 1% of customers have greater than 4 repeated purchases in the dataset.
 
-![image.png](attachment:image.png)
+![image.png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_17_0.png)
 
 
 
 
 *Model vs Actual - Cumulative Transactions and Daily Transactions*
-![image-3.png](attachment:image-3.png)
+![image-3.png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_18_0.png)
 
 
 ## About Olist Dataset
@@ -61,12 +61,10 @@ Transactions dataset year-month ranges from 2016-09 to 2018-08. Treating the cal
 ```python
 # Setting Working Directory to Git-Clone-Path.
 
-mydir = "E:\Data Science Portfolio\Git Projects\customer_lifetime_value"
+mydir = "Git\Clone\Path"
 
 %cd $mydir
 ```
-
-    E:\Data Science Portfolio\Git Projects\customer_lifetime_value
     
 
 ## Package Introduction <a name="introduction"></a>
@@ -135,19 +133,6 @@ transactions.head(2)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -204,19 +189,6 @@ summary_cal_holdout.head(2)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -264,19 +236,6 @@ summary.head(2)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -372,8 +331,7 @@ print(f"SINGLE CUSTOMER PREDICTIONS:"
           f"\n {frequency_predicted}"
           f"\nGround Truth: "
           f"\n {frequency_holdout}")
-```
-
+"""
     SINGLE CUSTOMER PREDICTIONS:
     Prediction:
      29881    0.008178
@@ -381,29 +339,24 @@ print(f"SINGLE CUSTOMER PREDICTIONS:"
     Ground Truth: 
      29881    0.0
     Name: frequency_holdout, dtype: float64
-    
+"""
 
-
-```python
 # Overall Root Mean Squared Error of Predictions.
 
 rmse = root_mean_squared_error()
 
 print(f"RMSE: {rmse}")
-```
 
-    RMSE: 0.14444759935762416
-    
-
-
-```python
+"""
+RMSE: 0.14444759935762416
+"""
 # Calibration vs Holdout Plot.
 
 evaluation_plots(plot_type="calibration_holdout");
 ```
 
 
-![png](output_17_0.png)
+![png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_17_0.png)
 
 
 
@@ -414,7 +367,7 @@ evaluation_plots(plot_type="tracking");
 ```
 
 
-![png](output_18_0.png)
+![png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_18_0.png)
 
 
 
@@ -429,7 +382,7 @@ evaluation_plots(plot_type="repeated");
     
 
 
-![png](output_19_1.png)
+![png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_19_1.png)
 
 
 ## Model Interpretation <a name="inter"></a>
@@ -493,7 +446,7 @@ plot_frequency_recency_matrix(model=model,
 ```
 
 
-![png](output_25_0.png)
+![png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_25_0.png)
 
 
 ### Probability Alive Matrix <a name="alive"></a>
@@ -511,7 +464,7 @@ plot_probability_alive_matrix(model=model);
 ```
 
 
-![png](output_27_0.png)
+![png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_27_0.png)
 
 
 ### High Probability Customers. <a name="highprob"></a>
@@ -563,19 +516,6 @@ historical_transactions_of_top_ten.head(2)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -627,7 +567,7 @@ sns.countplot(historical_transactions_of_top_ten["payment_type"]);
 ```
 
 
-![png](output_32_0.png)
+![png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_32_0.png)
 
 
 ### Forecast for Randomly Selected Customer in dataset. <a name="forecast"></a>
@@ -660,19 +600,6 @@ random_sampled_customer
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -703,28 +630,20 @@ random_sampled_customer
 
 number_of_purchases(historical_rfm_data=random_sampled_customer,
                     time_units=30)
+
+
+"""
+ 79299    0.044719
+    dtype: float64
+"""
 ```
 
-
-
-
-    79299    0.044719
-    dtype: float64
-
-
-
-
-```python
 # Predicting Probability that they will be placing an order based on Historical Transactions.
 
 probability_alive(historical_rfm_data=random_sampled_customer)
-```
 
-
-
-
+"""
     array([0.22415287])
-
-
-
+"""
+```
 **END**

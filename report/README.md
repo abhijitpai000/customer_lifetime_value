@@ -275,7 +275,8 @@ Trains two BG/NBD models. One on summary_cal_holdout dataset for evaluation and 
 # Training Models.
 
 train_model()
-```
+
+"""
 
     Optimization terminated successfully.
              Current function value: 0.070935
@@ -287,6 +288,10 @@ train_model()
              Iterations: 62
              Function evaluations: 63
              Gradient evaluations: 63
+
+"""
+```
+
     
 
 ## Model Evaluation <a name="evaluation"></a>
@@ -631,13 +636,10 @@ random_sampled_customer
 number_of_purchases(historical_rfm_data=random_sampled_customer,
                     time_units=30)
 
-
 """
  79299    0.044719
     dtype: float64
 """
-```
-
 # Predicting Probability that they will be placing an order based on Historical Transactions.
 
 probability_alive(historical_rfm_data=random_sampled_customer)
@@ -645,5 +647,6 @@ probability_alive(historical_rfm_data=random_sampled_customer)
 """
     array([0.22415287])
 """
+
 ```
 **END**

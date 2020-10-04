@@ -7,7 +7,7 @@ Trained a Beta Geometric-Negative Binomial Distribution (BG/NBD) model that expl
 **Model Outcome**
 
 
-Trained Model Predicts Number of Purchases with a RMSE of 0.144 and is able to capture 99% of customer historical transactions with frequency less than or equal to 4, Less than 1% of customers have greater than 4 repeated purchases in the dataset.
+Trained Model Predicts Number of Purchases with an RMSE of 0.144 and is able to capture 99% of customer historical transactions with a frequency less than or equal to 4, and only less than 1% of customers have greater than 4 repeated purchases in the dataset.
 
 ![image.png](https://github.com/abhijitpai000/customer_lifetime_value/blob/master/report/figures/output_17_0.png)
 
